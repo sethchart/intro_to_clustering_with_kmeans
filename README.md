@@ -1,15 +1,17 @@
 
 # Introduction to Clustering: $k$-means
 
-### By the end of this lecture, students will be able to:
+### By the end of this lecture, students will have:
 
-- **Assess** what scenarios could use $k$-means
+- **Assessed** what scenarios could use $k$-means
 
-- **Articulate** the methodology used by $k$-means
+- **Articulated** the methodology used by $k$-means
 
-- **Apply** KMeans from sklearn.cluster to a relevant dataset
+- **Applied** KMeans from sklearn.cluster to a relevant dataset
 
-- **Select** the appropriate number of clusters using $k$-means and the elbow method
+- **Selected** the appropriate number of clusters using $k$-means and the elbow method
+
+- **Practiced** applying kmeans to an image color reduction problem
 
 
 ## Scenario
@@ -136,6 +138,12 @@ Problem with this method?
 
 ### And to...
 ![max](../img/max.png)
+
+The steps of the KMeans algorithm are pretty straightforward:
+  1. Initialize cluster centers.
+  2. Calculate the distance of every point to in the data set to each cluster center, and assign each point to the closest center.
+  3. Make new cluster centers assigned to the averge of a all points labeled to the cluster.
+  4. Repeat until some criteria has been met (the clusters no longer move)
 
 **Sci-kit Learn** documentation actually has some pretty good [documentation describing the algorithm](https://scikit-learn.org/stable/modules/clustering.html#k-mean) if you wish for more detail.
 
@@ -371,10 +379,10 @@ ax.scatter(dummy_dat['V1'], dummy_dat['V2']);
 ```
 
 
-![png](index_files/index_27_0.png)
+![png](index_files/index_28_0.png)
 
 
-#### Introduction of `Kmeans`
+#### Introduction of `KMeans` class
 
 
 ```python
@@ -420,7 +428,7 @@ for i in range(len(model.cluster_centers_)):
 ```
 
 
-![png](index_files/index_34_0.png)
+![png](index_files/index_35_0.png)
 
 
 
@@ -450,7 +458,7 @@ ax.scatter(dummy_dat['V1'], dummy_dat['V2'],
 ```
 
 
-![png](index_files/index_37_0.png)
+![png](index_files/index_38_0.png)
 
 
 
@@ -461,7 +469,7 @@ ax.scatter(dummy_dat['V1'], dummy_dat['V2'],
 ```
 
 
-![png](index_files/index_38_0.png)
+![png](index_files/index_39_0.png)
 
 
 
@@ -548,8 +556,6 @@ Elbow method uses the sum of squared error calculated from each instance of $k$ 
 
 This is sometimes called the "inertia" of the model, and fitted sklearn $k$-means models have an `inertia_` attribute.
 
-Sometimes you will see the SSE divided by the total sum of squares in the dataset (how far is each point from the center of the entire dataset)
-
 Fewer clusters seems better, but inertia will always decrease with _more_ clusters. Hence the idea of looking for an elbow in the plot of inertia vs. $k$.
 
 
@@ -587,7 +593,7 @@ ax.grid(True)
 ```
 
 
-![png](index_files/index_45_0.png)
+![png](index_files/index_46_0.png)
 
 
 ### **Part 2B**: Silhouette Coefficient
@@ -605,6 +611,36 @@ The Silhouette Coefficient ranges between -1 and 1. The closer to 1, the more cl
 
 
 
+
+Suppose:
+- I have four points in a one-dimensional space: 0, 1, 9, and 10; and
+- I put them into two clusters: {0, 1} and {9, 10}.
+
+Then we would calculate the Silhouette Score as follows:
+
+For Point 0:
+- $a=1$
+- $b=9.5$
+- $s(0) = \frac{9.5 - 1}{9.5} = \frac{17}{19}$
+
+For Point 1:
+- $a=1$
+- $b=8.5$
+- $s(1) = \frac{8.5 - 1}{8.5} = \frac{15}{17}$
+
+For Point 9:
+- $a=1$
+- $b=8.5$
+- $s(9) = \frac{8.5 - 1}{8.5} = \frac{15}{17}$
+
+For Point 10:
+- $a=1$
+- $b=9.5$
+- $s(10) = \frac{9.5 - 1}{9.5} = \frac{17}{19}$
+
+The full Silhouette Score would be the average of all of these individual scores:
+
+$\large s = \frac{2\left(\frac{17}{19}\right) + 2\left(\frac{15}{17}\right)}{4}$
 
 
 ```python
@@ -631,7 +667,7 @@ ax.grid(True)
 ```
 
 
-![png](index_files/index_48_0.png)
+![png](index_files/index_50_0.png)
 
 
 # Activity
@@ -662,42 +698,13 @@ imgplot = ax.imshow(img)
 ```
 
 
-    ---------------------------------------------------------------------------
-
-    FileNotFoundError                         Traceback (most recent call last)
-
-    <ipython-input-28-5b2c391b60aa> in <module>
-          1 fig, ax = plt.subplots(figsize=(10,10))
-    ----> 2 img = mpimg.imread('data/miro.jpg')
-          3 imgplot = ax.imshow(img)
-
-
-    ~/anaconda3/lib/python3.7/site-packages/matplotlib/image.py in imread(fname, format)
-       1415                              'with Pillow installed matplotlib can handle '
-       1416                              'more images' % list(handlers))
-    -> 1417         with Image.open(fname) as image:
-       1418             return pil_to_array(image)
-       1419 
-
-
-    ~/anaconda3/lib/python3.7/site-packages/PIL/Image.py in open(fp, mode, formats)
-       2889 
-       2890     if filename:
-    -> 2891         fp = builtins.open(filename, "rb")
-       2892         exclusive_fp = True
-       2893 
-
-
-    FileNotFoundError: [Errno 2] No such file or directory: 'data/miro.jpg'
-
-
-
-![png](index_files/index_53_1.png)
+![png](index_files/index_55_0.png)
 
 
 
 ```python
 # What is the shape of the image, and what does each component represent?
+
 ```
 
 
@@ -779,15 +786,15 @@ imgplot = ax.imshow(restored_image)
 ```
 
 
-![png](index_files/index_62_0.png)
+![png](index_files/index_64_0.png)
 
 
 # In pairs: 10 minute exercise
 
-Fit a KMeans instance to the reshaped data `img_reshape`.  
-When initializing the object, you will start by passing `n_clusters = 2` as an argument.  
-When you fit the `img_reshape`, your KMeans object will group the pixels by proximity in the 3 dimensional RGB space.  
-If you pass n_clusters =2, the attribute cluster_centers_ will yield an array of floats representing 2 points in 3d space which represents the center of the group of nearest pixels. These centers are associated with 2 labels, 0 and 1. The label assignment values can be accessed via the .labels_ attribute.  
+Now, in pairs, we will use the KMeans algorithm to reduce the number of colors in the photo.   
+
+Start by reducing the number of colors to 2.  To do so we will have to pass an appropriate argument  when instantianting a KMeans object.  The number of clusters we initiate will determine the number of colors that the image is reduced to.
+
 In order to visualize the groupings, we will replace the original pixel values with the cluster centers associated with the assigned label.
 
 
@@ -962,7 +969,7 @@ imgplot = ax.imshow(new_image_2.astype(int))
 ```
 
 
-![png](index_files/index_81_0.png)
+![png](index_files/index_83_0.png)
 
 
 ### Explain in your own words why the image looks like it does.
@@ -1010,5 +1017,5 @@ def paint_picture(n_clusters):
 ```
 
 
-![png](index_files/index_86_0.png)
+![png](index_files/index_88_0.png)
 
