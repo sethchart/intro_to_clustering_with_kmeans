@@ -154,7 +154,7 @@ from sklearn.cluster import KMeans
 
 
 ```python
-dummy_dat = pd.read_csv("../data/xclara.txt",
+dummy_dat = pd.read_csv("data/xclara.txt",
                         header=0,
                         index_col=0)
 dummy_dat.reset_index(inplace=True)
@@ -560,7 +560,7 @@ model.inertia_
 
 
 
-    611605.880693389
+    611605.8806933895
 
 
 
@@ -657,12 +657,42 @@ Let's look at a colorful Miro painting with matplotlib.
 
 ```python
 fig, ax = plt.subplots(figsize=(10,10))
-img = mpimg.imread('./data/miro.jpg')
+img = mpimg.imread('data/miro.jpg')
 imgplot = ax.imshow(img)
 ```
 
 
-![png](index_files/index_53_0.png)
+    ---------------------------------------------------------------------------
+
+    FileNotFoundError                         Traceback (most recent call last)
+
+    <ipython-input-28-5b2c391b60aa> in <module>
+          1 fig, ax = plt.subplots(figsize=(10,10))
+    ----> 2 img = mpimg.imread('data/miro.jpg')
+          3 imgplot = ax.imshow(img)
+
+
+    ~/anaconda3/lib/python3.7/site-packages/matplotlib/image.py in imread(fname, format)
+       1415                              'with Pillow installed matplotlib can handle '
+       1416                              'more images' % list(handlers))
+    -> 1417         with Image.open(fname) as image:
+       1418             return pil_to_array(image)
+       1419 
+
+
+    ~/anaconda3/lib/python3.7/site-packages/PIL/Image.py in open(fp, mode, formats)
+       2889 
+       2890     if filename:
+    -> 2891         fp = builtins.open(filename, "rb")
+       2892         exclusive_fp = True
+       2893 
+
+
+    FileNotFoundError: [Errno 2] No such file or directory: 'data/miro.jpg'
+
+
+
+![png](index_files/index_53_1.png)
 
 
 
