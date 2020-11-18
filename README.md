@@ -175,123 +175,9 @@ dummy_dat.head()
 ```
 
 
-
-
-<div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>V1</th>
-      <th>V2</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>0</th>
-      <td>2.072345</td>
-      <td>-3.241693</td>
-    </tr>
-    <tr>
-      <th>1</th>
-      <td>17.936710</td>
-      <td>15.784810</td>
-    </tr>
-    <tr>
-      <th>2</th>
-      <td>1.083576</td>
-      <td>7.319176</td>
-    </tr>
-    <tr>
-      <th>3</th>
-      <td>11.120670</td>
-      <td>14.406780</td>
-    </tr>
-    <tr>
-      <th>4</th>
-      <td>23.711550</td>
-      <td>2.557729</td>
-    </tr>
-  </tbody>
-</table>
-</div>
-
-
-
-
 ```python
 dummy_dat.tail()
 ```
-
-
-
-
-<div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>V1</th>
-      <th>V2</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>2995</th>
-      <td>85.65280</td>
-      <td>-6.461061</td>
-    </tr>
-    <tr>
-      <th>2996</th>
-      <td>82.77088</td>
-      <td>-2.373299</td>
-    </tr>
-    <tr>
-      <th>2997</th>
-      <td>64.46532</td>
-      <td>-10.501360</td>
-    </tr>
-    <tr>
-      <th>2998</th>
-      <td>90.72282</td>
-      <td>-12.255840</td>
-    </tr>
-    <tr>
-      <th>2999</th>
-      <td>64.87976</td>
-      <td>-24.877310</td>
-    </tr>
-  </tbody>
-</table>
-</div>
-
-
 
 #### EDA of variables
 
@@ -301,86 +187,10 @@ dummy_dat.describe()
 ```
 
 
-
-
-<div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>V1</th>
-      <th>V2</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>count</th>
-      <td>3000.000000</td>
-      <td>3000.000000</td>
-    </tr>
-    <tr>
-      <th>mean</th>
-      <td>40.611358</td>
-      <td>22.862141</td>
-    </tr>
-    <tr>
-      <th>std</th>
-      <td>25.859054</td>
-      <td>31.759714</td>
-    </tr>
-    <tr>
-      <th>min</th>
-      <td>-22.495990</td>
-      <td>-38.795500</td>
-    </tr>
-    <tr>
-      <th>25%</th>
-      <td>18.462790</td>
-      <td>-4.003494</td>
-    </tr>
-    <tr>
-      <th>50%</th>
-      <td>41.552210</td>
-      <td>13.827390</td>
-    </tr>
-    <tr>
-      <th>75%</th>
-      <td>62.249480</td>
-      <td>55.729100</td>
-    </tr>
-    <tr>
-      <th>max</th>
-      <td>104.376600</td>
-      <td>87.313700</td>
-    </tr>
-  </tbody>
-</table>
-</div>
-
-
-
-
 ```python
 fig, ax = plt.subplots()
 ax.scatter(dummy_dat['V1'], dummy_dat['V2']);
 ```
-
-
-![png](index_files/index_28_0.png)
-
 
 #### Introduction of `KMeans` class
 
@@ -407,10 +217,6 @@ for i in range(len(model.cluster_centers_)):
 ```
 
 
-![png](index_files/index_33_0.png)
-
-
-
 ```python
 # Use the predict method on a list of 2 x and y values
 
@@ -424,19 +230,11 @@ ax.scatter(dummy_dat['V1'], dummy_dat['V2'],
 ```
 
 
-![png](index_files/index_35_0.png)
-
-
-
 ```python
 fig, ax = plt.subplots()
 ax.scatter(dummy_dat['V1'], dummy_dat['V2'],
            c= model.labels_);
 ```
-
-
-![png](index_files/index_36_0.png)
-
 
 
 ```python
@@ -448,69 +246,6 @@ labeled_df = pd.concat([dummy_dat, pd.DataFrame(model.labels_,
 ```python
 labeled_df.head()
 ```
-
-
-
-
-<div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>V1</th>
-      <th>V2</th>
-      <th>cluster</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>0</th>
-      <td>2.072345</td>
-      <td>-3.241693</td>
-      <td>0</td>
-    </tr>
-    <tr>
-      <th>1</th>
-      <td>17.936710</td>
-      <td>15.784810</td>
-      <td>0</td>
-    </tr>
-    <tr>
-      <th>2</th>
-      <td>1.083576</td>
-      <td>7.319176</td>
-      <td>0</td>
-    </tr>
-    <tr>
-      <th>3</th>
-      <td>11.120670</td>
-      <td>14.406780</td>
-      <td>0</td>
-    </tr>
-    <tr>
-      <th>4</th>
-      <td>23.711550</td>
-      <td>2.557729</td>
-      <td>0</td>
-    </tr>
-  </tbody>
-</table>
-</div>
-
-
 
 ## **Part 2**: Cluster Validation: Choosing the appropriate number of $k$
 
@@ -528,13 +263,6 @@ Fewer clusters seems better, but inertia will always decrease with _more_ cluste
 ```python
 model.inertia_
 ```
-
-
-
-
-    611605.8806933895
-
-
 
 Inertia is the sum of squared distances between points and their cluster center.
 
@@ -557,10 +285,6 @@ ax.set_xlabel('k')
 ax.plot(range(2, 10), distortions)
 ax.grid(True)
 ```
-
-
-![png](index_files/index_43_0.png)
-
 
 ### **Part 2B**: Silhouette Coefficient
 
@@ -632,10 +356,6 @@ ax.axhline(y=np.mean(silhouette_plot), color="red", linestyle="--")
 ax.grid(True)
 ```
 
-
-![png](index_files/index_47_0.png)
-
-
 # Activity
 
 Let's practice k-means clustering with an image of a piece of art. 
@@ -662,10 +382,6 @@ fig, ax = plt.subplots(figsize=(10,10))
 img = mpimg.imread('data/miro.jpg')
 imgplot = ax.imshow(img)
 ```
-
-
-![png](index_files/index_52_0.png)
-
 
 
 ```python
@@ -697,13 +413,6 @@ img_reshape.shape
 ```
 
 
-
-
-    (1734000, 3)
-
-
-
-
 ```python
 # after clustering, we will restore the original shape
 # the code below demonstrates that the original image is restored by reshaping
@@ -716,10 +425,6 @@ imgplot = ax.imshow(restored_image)
 
 
 ```
-
-
-![png](index_files/index_58_0.png)
-
 
 # In pairs: 10 minute exercise
 
@@ -734,13 +439,6 @@ In order to visualize the groupings, we will replace the original pixel values w
 # Reminder of our flattened image
 img_reshape.shape
 ```
-
-
-
-
-    (1734000, 3)
-
-
 
 
 ```python
@@ -790,32 +488,11 @@ centers_2.shape
 ```
 
 
-
-
-    (1734000, 3)
-
-
-
-
 ```python
 # reshape to (1200, 1445, 3)
 new_image_2 = None
 new_image_2.shape
 ```
-
-
-    ---------------------------------------------------------------------------
-
-    AttributeError                            Traceback (most recent call last)
-
-    <ipython-input-247-50e848fc5cd5> in <module>
-          1 # reshape to (1200, 1445, 3)
-          2 new_image_2 = None
-    ----> 3 new_image_2.shape
-    
-
-    AttributeError: 'NoneType' object has no attribute 'shape'
-
 
 
 ```python
@@ -827,10 +504,6 @@ new_image_2.shape
 fig, ax = plt.subplots(figsize=(10,10))
 imgplot = ax.imshow(new_image_2.astype(int))
 ```
-
-
-![png](index_files/index_71_0.png)
-
 
 ### Explain in your own words why the image looks like it does.
 
